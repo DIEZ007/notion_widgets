@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Horloge New York</title>
+  <style>
+    body {
+      background-color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .full-table {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      width: 250px;
+      height: 250px;
+      background: #FF6666; /* Rouge clair */
+      color: #000;
+      border-radius: 50%;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Roboto', sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .greet {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .date {
+      font-size: 1em;
+      margin-bottom: 12px;
+    }
+
+    .clock {
+      font-size: 1.4em;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .time {
+      display: inline-block;
+      min-width: 30px;
+    }
+
+    .colon {
+      display: inline-block;
+    }
+
+    .ampm {
+      font-size: 0.8em;
+      margin-left: 4px;
+    }
+  </style>
+</head>
+<body>
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" />
+
+<div class="full-table">
+  <div class="card">
+    <div class="greet">Local Time - New York</div>
+    <div class="date" id="date"></div>
+    <div class="clock">
+      <span class="time" id="hour"></span>
+      <span class="colon">:</span>
+      <span class="time" id="min"></span>
+      <span class="colon">:</span>
+      <span class="time" id="sec"></span>
+      <span class="ampm" id="ampm"></span>
+    </div>
+  </div>
+</div>
+
+<script>
+function updateClockNY() {
+  // Obtenir la date et l’heure à New York sous forme de chaîne
+  const optionsDate = {
+    timeZone: 'America/New_York',
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  };
+
+  const optionsTime = {
+    timeZone: 'America/New_York',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    hour12: true
+  };
+
+  const dateStr = new Date().toLocaleDateString('fr-FR', optionsDate);
+  const timeStr = new Date().toLocaleTimeString('en-US', optionsTime);
+
+  // Extraire heure, minute, seconde, am/pm
+  const [hour, min, secWithAmPm] = timeStr.split(':');
+  const [sec, ampm] = secWithAmPm.split(' ');
+
+  // Injecter dans HTML
+  document.getElementById("date").innerHTML = dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
+  document.getElementById("hour").textContent = hour.padStart(2, '0');
+  document.getElementById("min").textContent = min;
+  document.getElementById("sec").textContent = sec;
+  document.getElementById("ampm").textContent = ampm;
+
+  setTimeout(updateClockNY, 1000);
+}
+
+updateClockNY();
+</script>
+</body>
+</html>
