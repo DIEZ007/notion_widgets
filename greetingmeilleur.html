@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Horloge - Madagascar</title>
+  <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto:400,700" rel="stylesheet">
+  <style>
+    body {
+      background-color: #fff;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+
+    .full-table {
+      display: table;
+      height: 100vh;
+      width: 100%;
+    }
+
+    .table-cell {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+    }
+
+    .card {
+      padding: 10px 25px;
+      border-radius: 10px;
+      background: #009688;
+      color: #fff;
+      display: inline-block;
+      box-shadow: 2px 2px 1px 0px #295C7B;
+    }
+
+    .card:hover {
+      margin-top: 2px;
+      box-shadow: none;
+    }
+
+    .clock {
+      display: inline-block;
+      font-family: 'Roboto', sans-serif;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+
+    .time {
+      display: inline-block;
+      min-width: 37px;
+    }
+
+    .colon {
+      font-size: 1.1em;
+      display: inline-block;
+    }
+
+    .date {
+      display: block;
+      min-width: 200px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1.2em;
+    }
+
+    .greet {
+      min-width: 200px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="full-table">
+  <div class="table-cell">
+    <div class="card">
+      <div class="greet" id="greet">Heure locale - Madagascar</div>
+      <div class="date" id="date"></div>
+      <div class="clock">
+        <div class="time" id="hour"></div>
+        <div class="colon">:</div>
+        <div class="time" id="min"></div>
+        <div class="colon">:</div>
+        <div class="time" id="sec"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const optionsDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
+  function afficherDate() {
+    const today = new Date();
+    const dateLocale = today.toLocaleDateString('fr-FR', optionsDate);
+    document.getElementById('date').textContent = dateLocale;
+  }
+
+  function afficherHeure() {
+    const now = new Date();
+    const heures = zeros(now.getHours());
+    const minutes = zeros(now.getMinutes());
+    const secondes = zeros(now.getSeconds());
+
+    document.getElementById('hour').textContent = heures;
+    document.getElementById('min').textContent = minutes;
+    document.getElementById('sec').textContent = secondes;
+  }
+
+  function zeros(num) {
+    return num < 10 ? '0' + num : num;
+  }
+
+  function updateHorloge() {
+    afficherDate();
+    afficherHeure();
+    setTimeout(updateHorloge, 1000);
+  }
+
+  updateHorloge();
+</script>
+
+</body>
+</html>
