@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tasks Widget</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff;
+      margin: 20px;
+    }
+    h2 {
+      color: #e63946;
+      letter-spacing: 4px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #f1f1f1;
+    }
+    .priority-high {
+      color: #e63946;
+      font-weight: bold;
+    }
+    .priority-medium {
+      color: #f4a261;
+      font-weight: bold;
+    }
+    .priority-low {
+      color: #2a9d8f;
+      font-weight: bold;
+    }
+    .completed {
+      text-decoration: line-through;
+      color: #888;
+    }
+    .checkbox {
+      width: 20px;
+      height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h2>T A S K S</h2>
+
+  <table>
+    <tr>
+      <th>✅</th>
+      <th>Task</th>
+      <th>Priority</th>
+      <th>Date</th>
+      <th>Time</th>
+    </tr>
+    <tr>
+      <td><input type="checkbox" class="checkbox"></td>
+      <td>Example task 1</td>
+      <td class="priority-high">High</td>
+      <td>2025-07-02</td>
+      <td>09:00</td>
+    </tr>
+    <tr>
+      <td><input type="checkbox" class="checkbox" checked></td>
+      <td class="completed">Example task 2</td>
+      <td class="priority-medium">Medium</td>
+      <td>2025-07-02</td>
+      <td>14:00</td>
+    </tr>
+    <tr>
+      <td><input type="checkbox" class="checkbox"></td>
+      <td>Example task 3</td>
+      <td class="priority-low">Low</td>
+      <td>2025-07-02</td>
+      <td>16:30</td>
+    </tr>
+  </table>
+
+</body>
+</html>
